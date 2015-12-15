@@ -15,7 +15,7 @@ subtitle: Dynamic Documents for R
 ```{r Preface}
 ```
 
-## What?
+## What? {.build}
 
 R Markdown is an authoring format that enables easy creation of dynamic documents, presentations, and reports from R. It combines the core syntax of markdown (an easy-to-write plain text format) with embedded R code chunks that are run so their output can be included in the final document. R Markdown documents are fully reproducible (they can be automatically regenerated whenever underlying R code or data changes).
 
@@ -259,6 +259,137 @@ Content Cell  | Content Cell
 </div>
 
 
+## Text Color
+
+You can color content using base color classes red, blue, green, yellow,
+and gray (or variations of them e.g. red2, red3, blue2, blue3, etc.).
+
+```html
+<div class="red2">
+This text is red
+</div>
+```
+
+```{r results='asis', echo=FALSE}
+library(whisker)
+temp = '<span class="{{color}}{{number}}">{{color}}{{number}}</span>'
+numbers = c("", "2", "3")
+colors = c("red", "blue", "green", "yellow", "gray")
+for (color in colors){
+    cat("- ")
+    for (number in numbers){
+        out = whisker.render(temp)
+        cat(out)
+    }
+    cat("\n")
+}
+```
+
+
+
+# R Code Chunks
+```{r R Code Chunks}
+```
+
+
+## Overview
+
+R code will be evaluated and printed
+
+
+<!--pre class="prettyprint lang-r"><code>&#96;&#96;&#96;{r}-->
+<pre class="markdown"><code>&#96;&#96;&#96;{r}
+summary(cars$dist)
+&#96;&#96;&#96;
+</code></pre>
+
+
+```{r}
+summary(cars$dist)
+```
+
+
+
+## Named R code chunk. 
+
+<pre class="markdown"><code>&#96;&#96;&#96;{r plot}
+summary(cars)
+plot(cars)
+&#96;&#96;&#96;
+</code></pre>
+
+- Easy Navigation in RStudio  
+
+![chunk name](images/chunk_name.png)
+
+
+## Basic Chunk Options
+
+- `echo`(TRUE): whether to include R source code in the output file
+- `eval`(TRUE): whether to evaluate the code chunk
+- `message`(TRUE): whether to preserve messages emitted by message()
+- `include`(TRUE): if include=FALSE, nothing will be written into the output document, but the code is still evaluated and plot files are generated
+- `warning`(TRUE): whether to preserve warnings in the output 
+
+Set global chunk options:
+
+```r
+knitr::opts_chunk$set()
+```
+
+## Plots
+
+- `dev`('png'): figure format(png, jpeg, tiff, svg, ...)
+- `fig.path`('figure/'): figure path
+- `fig.width`(7): figure width
+- `fig.height`(7): figure height
+- `dpi`(72): DPI (dots per inch)
+
+<pre class="markdown"><code>&#96;&#96;&#96;{r dev='svg', fig.path='myplot',fig.width=5, fig.height=5}
+plot(iris)
+&#96;&#96;&#96;
+</code></pre>
+
+***
+
+```{r dev='svg', fig.path='myplot',fig.width=5, fig.height=5,echo=FALSE}
+plot(iris)
+```
+
+
+## Inline R Code
+
+I counted 'r 1+1' red trucks on the highway.
+
+<br>
+
+```r
+I counted `r 1+1` red trucks on the highway.
+```
+
+# Other Cool Stuff
+
+```{r Other_Cool_Stuff}
+```
+
+## ggvis code
+
+```{r message=FALSE, echo=TRUE, fig.height=2.5}
+library(knitr)
+library(ggvis)
+mtcars %>%
+    ggvis(x = ~wt, y = ~mpg) %>%
+    layer_smooths(se=TRUE, opacity := 0.5, opacity.hover := 0.75) %>% 
+    layer_points(fill = ~factor(cyl), size := 50, size.hover := 200) %>%
+    set_options(hover_duration = 250)
+```
+
+## DataTable code
+
+```{r message=FALSE, echo=TRUE, fig.height=2.5}
+library(DT)
+datatable(mtcars,options=list(pageLength=3))
+```
 
 
 ## References
@@ -269,7 +400,7 @@ Content Cell  | Content Cell
 - [RStudio Documentation](https://support.rstudio.com/hc/en-us/categories/200035113-Documentation)
 - [Reproducible Research](https://www.coursera.org/course/repdata)
 - [Shiny Articles](http://shiny.rstudio.com/articles/)
-- [Slides GitHub Page](https://github.com/mansunkuo/rmd_tutorial)
+- [Slides GitHub Page](https://github.com/jpuigde/RMarkdown)
 - [mansun_kuo](http://rpubs.com/mansun_kuo/24330)
 
 
