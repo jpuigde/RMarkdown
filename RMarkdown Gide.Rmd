@@ -1,0 +1,276 @@
+---
+title: "RMarkdown Guide"
+author: "[Jordi Puigdellivol](https://es.linkedin.com/in/jordi-puigdellivol-654b5265)"
+date: '`r Sys.Date()`<br><br><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative CC license terms" style="border-width:0" src="images/by-nc-sa-4.0-88x31.png" /></a>'
+output:
+  ioslides_presentation:
+    logo: images/logoR.png
+    widescreen: yes
+subtitle: Dynamic Documents for R
+
+---
+<!-- logo: assets/img/Taiwan-R-logo.png -->
+
+# Preface
+```{r Preface}
+```
+
+## What?
+
+R Markdown is an authoring format that enables easy creation of dynamic documents, presentations, and reports from R. It combines the core syntax of markdown (an easy-to-write plain text format) with embedded R code chunks that are run so their output can be included in the final document. R Markdown documents are fully reproducible (they can be automatically regenerated whenever underlying R code or data changes).
+
+<img src="images/02-estructura.png" alt="logo" height="300">
+
+## It happened everyday {.build}
+
+<div class="columns-2">
+
+1. Data preparation
+2. Modeling
+3. Generating report
+4. Something wrong in your data
+5. Repeat 1 ~ 4
+
+<img src="images/01-everyday.jpg" alt="logo" height="300">
+
+</div>
+
+
+## Why?
+
+1.  Automate
+    + Periodic documents
+    + Adapted documents
+    + Faster to implement
+2.  Reproducible
+    + Less errors
+3.  Diferent formats
+    + Html 
+    + Pdf 
+    + Presentations
+
+## Research Pipeline {.smaller .centered}
+
+<img src="images/research_pipeline.png" alt="research pipeline" height="500">
+
+[Roger D. Peng, Reproducible Research: Concepts and Ideas p.10 on Coursera](https://www.coursera.org/course/repdata)
+
+# how to start?
+```{r how_to_start}
+```
+
+## Installing R Markdown
+
+- RStudio --- Install the [latest version of RStudio](http://www.rstudio.com/ide/download/preview)
+
+- Other environments --- Install the [rmarkdown package](https://github.com/rstudio/rmarkdown).
+
+
+## Overview
+
+- YAML Metadata: [YAML](http://en.wikipedia.org/wiki/YAML) document options
+- Markdown: Article text
+- R Code Chunk: Executible R code
+
+<img src="images/overview.png" alt="research pipeline" height="300">
+
+
+## Rendering Output
+
+- RStudio: "Knit" command (**Ctrl+Shift+K**)
+- Command line: `rmarkdown::render` function
+
+```r
+rmarkdown::render("input.Rmd")
+```
+
+## Create a HTML Document
+
+
+<div class="columns-2">
+<img src="images/create_html_1.png" alt="output_option" height="400">
+<img src="images/create_html_2.png" alt="output_option" height="375">
+</div>
+
+# Markdown Basics
+```{r Markdown Basics}
+```
+
+## Markdown Quick Reference
+
+<img src="images/md_quick_ref.png" alt="md_quick_ref" height="500">
+
+
+## Emphasis
+```markdown
+*italic*   **bold**
+
+_italic_   __bold__
+```
+
+*I am italic*   
+
+**I am bold**
+
+
+
+## Headers
+
+Setext:
+
+
+```markdown
+Header 1
+=============
+
+Header 2
+-------------
+```
+
+atx:
+
+```markdown
+# Header 1
+
+## Header 2
+
+### Header 3
+```    
+
+
+## Lists
+
+
+<div class="columns-2">
+```html
+Unordered List:
+
+* Item 1
+* Item 2
+    + Item 2a
+    - Item 2b
+
+Ordered List:
+
+1. Item 1
+2. Item 2
+3. Item 3
+    + Item 3a
+    + Item 3b
+
+
+
+
+
+```
+
+
+Unordered List:
+
+* Item 1
+* Iteivm 2
+    + Item 2a
+    - Item 2b
+
+Ordered List:
+
+1. Item 1
+2. Item 2
+3. Item 3
+    + Item 3a
+    + Item 3b
+
+</div>
+
+
+## Links & Images
+
+A plain http address or add a link to a phrase.
+
+**Link:**
+
+```html
+[rugbcn-r-users-group](http://www.meetup.com/es/rugbcn-barcelona-r-users-group/)
+```
+[rugbcn-r-users-group](http://www.meetup.com/es/rugbcn-barcelona-r-users-group/)
+
+
+**Image**:
+
+```html
+![logo](images/logoR.png)
+
+
+```
+![logo](images/logoR.png)
+
+## Plain Code Blocks
+
+- Plain code blocks are displayed in a fixed-width font but not evaulated.
+
+    <pre class="markdown"><code>&#96;&#96;&#96;
+    This text is displayed verbatim / preformatted
+    &#96;&#96;&#96;
+    </code></pre>
+
+- Specify the language of the block is avaliable
+
+    <pre><code>```r
+    x = rnorm(10)
+    ```</code></pre>
+
+    ```r
+    x = rnorm(10)
+    ```
+
+
+## Embedding Equations
+
+- LaTeX
+    - Inline equation: `$equation$`   $\frac{1}{n} \sum_{i=i}^{n} x_i$ 
+
+    - Display equation: `$$equation$$`
+      $$\frac{1}{n} \sum_{i=i}^{n} x_i$$
+      
+    - Useful Resources
+        - [Daum Equation Editor](https://chrome.google.com/webstore/detail/daum-equation-editor/dinfmiceliiomokeofbocegmacmagjhe?utm_source=chrome-ntp-icon): Chrome Plugin
+        - [Online LaTeX Equation Editor](http://www.codecogs.com/latex/eqneditor.php)
+
+
+
+## Tables
+
+<div class="columns-2">
+```html
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+
+
+
+```
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+
+</div>
+
+
+
+
+## References
+    
+- [R Markdown Cheat Sheet](http://shiny.rstudio.com/articles/rm-cheatsheet.html)
+- [R Markdown](http://rmarkdown.rstudio.com/)
+- [knitr](http://yihui.name/knitr/)
+- [RStudio Documentation](https://support.rstudio.com/hc/en-us/categories/200035113-Documentation)
+- [Reproducible Research](https://www.coursera.org/course/repdata)
+- [Shiny Articles](http://shiny.rstudio.com/articles/)
+- [Slides GitHub Page](https://github.com/mansunkuo/rmd_tutorial)
+- [mansun_kuo](http://rpubs.com/mansun_kuo/24330)
+
+
+
