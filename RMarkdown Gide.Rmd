@@ -392,6 +392,7 @@ datatable(mtcars,options=list(pageLength=3))
 ```
 
 
+
 ## References
     
 - [R Markdown Cheat Sheet](http://shiny.rstudio.com/articles/rm-cheatsheet.html)
@@ -402,6 +403,7 @@ datatable(mtcars,options=list(pageLength=3))
 - [Shiny Articles](http://shiny.rstudio.com/articles/)
 - [Slides GitHub Page](https://github.com/jpuigde/RMarkdown)
 - [mansun_kuo](http://rpubs.com/mansun_kuo/24330)
-
+- [Carlos Bort & Lluís Ramon](https://github.com/LluisRamon/rmarkdown-talk.git)
+- [Examples](https://github.com/yihui/knitr-examples)
 
 
